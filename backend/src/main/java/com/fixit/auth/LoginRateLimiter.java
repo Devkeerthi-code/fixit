@@ -8,7 +8,9 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -42,5 +44,17 @@ public class LoginRateLimiter {
             }
             window.addLast(now);
         }
+    }
+
+    /** Drops keys with no recent attempts so the map can't grow forever. */
+    @Scheduled(fixedDelay = 15, timeUnit = TimeUnit.MINUTES)
+    public void evictIdle() {
+        Instant cutoff = Instant.now(clock).minus(WINDOW);
+        attempts.entrySet().removeIf(e -> {
+            synchronized (e.getValue()) {
+                Instant last = e.getValue().peekLast();
+                return last == null || last.isBefore(cutoff);
+            }
+        });
     }
 }
