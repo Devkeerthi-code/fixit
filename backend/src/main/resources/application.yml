@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: fixit
+  config:
+    # Local dev: read the repo-root .env as a properties file (no extra library needed).
+    # In Docker/Render the same keys come from real environment variables.
+    import: "optional:file:../.env[.properties],optional:file:.env[.properties]"
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:5}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+        default_batch_fetch_size: 50
+  flyway:
+    enabled: true
+  servlet:
+    multipart:
+      max-file-size: 600KB
+      max-request-size: 2MB
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+  error:
+    include-stacktrace: never
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    access-ttl: PT15M
+    refresh-ttl: P14D
+  cookie-secure: ${COOKIE_SECURE:true}
+  allowed-origins: ${APP_ORIGIN:http://localhost:5173}
+  admin-emails: ${ADMIN_EMAILS:}
+  sla:
+    job-delay-ms: ${SLA_JOB_DELAY_MS:300000}
+    auto-close-hours: 72
+
+springdoc:
+  swagger-ui:
+    path: /docs
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
