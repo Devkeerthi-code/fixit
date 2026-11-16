@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.util.UUID;
 
 /**
@@ -24,7 +26,9 @@ public class RefreshToken {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "token_hash", nullable = false, unique = true)
+    // SHA-256 hex digest is always 64 chars, stored as CHAR(64).
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "token_hash", nullable = false, unique = true, length = 64)
     private String tokenHash;
 
     @Column(name = "family_id", nullable = false)
