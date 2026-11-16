@@ -40,7 +40,7 @@ app:
     access-ttl: PT15M
     refresh-ttl: P14D
   cookie-secure: ${COOKIE_SECURE:true}
-  allowed-origins: ${APP_ORIGIN:http://localhost:5173}
+  allowed-origins: ${APP_ORIGIN:http://localhost:3000}
   admin-emails: ${ADMIN_EMAILS:}
   sla:
     job-delay-ms: ${SLA_JOB_DELAY_MS:300000}

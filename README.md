@@ -197,7 +197,7 @@ cp .env.example .env              # then set JWT_SECRET (and ADMIN_EMAILS)
 docker compose up --build         # API on http://localhost:8080, Swagger UI on http://localhost:8080/docs
 
 # 2. Frontend (separate terminal)
-cd frontend && npm install && npm run dev   # http://localhost:5173 (proxies /api to :8080)
+cd frontend && npm install && npm run dev   # http://localhost:3000 (proxies /api to :8080)
 ```
 
 To run the backend without Docker against Neon instead, set `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` in `.env`, then run `cd backend && ./mvnw spring-boot:run`. The app reads `../.env` itself. Your network must allow outbound port 5432.
