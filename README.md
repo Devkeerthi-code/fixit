@@ -197,10 +197,10 @@ cp .env.example .env              # then set JWT_SECRET (and ADMIN_EMAILS)
 docker compose up --build         # API on http://localhost:8080, Swagger UI on http://localhost:8080/docs
 
 # 2. Frontend (separate terminal)
-cd frontend && npm install && npm run dev   # http://localhost:3000 (proxies /api to :8080)
+cd frontend && npm install && npm run dev   # http://localhost:3000 (proxies /api to the backend's PORT, default 8080)
 ```
 
-To run the backend without Docker against Neon instead, set `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` in `.env`, then run `cd backend && ./mvnw spring-boot:run`. The app reads `../.env` itself. Your network must allow outbound port 5432.
+To run the backend without Docker (needs JDK 21), point `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` in `.env` at Neon or at a locally installed PostgreSQL (`jdbc:postgresql://localhost:5432/fixit`), then run `cd backend && ./mvnw spring-boot:run`. The app reads `../.env` itself and Flyway creates the schema on first start. If port 8080 is already in use, set `PORT=8081` in `.env`; the frontend proxy follows it.
 
 ### Tests
 
