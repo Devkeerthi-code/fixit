@@ -1,0 +1,15 @@
+@import "@fontsource-variable/playfair-display/wght.css";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "@fontsource-variable/inter-tight/wght.css";
+@import "tailwindcss/base";
+@import "./tokens.css";
+@import "./base.css";
+@import "./controls.css";
+@import "./feedback.css";
+@import "./shell.css";
+@import "./resident.css";
+@import "./report.css";
+@import "./ticket.css";
+@import "./auth.css";
+@import "./desk.css";
+@import "tailwindcss/utilities";

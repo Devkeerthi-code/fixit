@@ -1,0 +1,100 @@
+/* ---------- Hero ---------- */
+.hero { position: relative; z-index: 3; background: var(--bg); padding: clamp(40px, 6vw, 104px) 0 clamp(48px, 5vw, 72px); }
+.hero__meta { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-5); margin-top: clamp(40px, 6vw, 96px); align-items: start; }
+.room-card { grid-column: 1 / span 4; border-top: 1px solid var(--text); padding-top: var(--s-4); }
+.room-card .label { margin-bottom: var(--s-3); }
+.room-card__value { font-family: var(--font-display); font-size: clamp(2rem, 1.6rem + 1.4vw, 3rem); letter-spacing: -0.03em; line-height: 1; margin: 0; }
+.room-card__facts { margin-top: var(--s-3); font-size: var(--text-md); font-weight: 600; line-height: 1.35; }
+.room-card__facts a { color: var(--gold-ink); }
+.hero__lede { grid-column: 5 / span 4; font-size: var(--text-md); font-weight: 600; line-height: 1.35; border-top: 1px solid var(--line); padding-top: var(--s-4); margin: 0; }
+@media (max-width: 767px) { .hero__meta { grid-template-columns: 1fr; } .room-card, .hero__lede { grid-column: 1; } }
+.notch { position: absolute; left: 50%; bottom: -43px; width: 120px; height: 44px; transform: translateX(-50%); fill: var(--bg); transition: fill var(--dur-base); }
+
+/* ---------- Olive band with the etched block; the door tag is a damped pendulum ---------- */
+.band { position: relative; z-index: 1; background: var(--olive); color: var(--gold-on-olive); height: clamp(420px, 46vw, 680px); overflow: hidden; }
+/* The sheet below overlaps the band by --r-sheet, so the drawing stands on that line and the door tag stays visible. */
+.band__art { position: absolute; left: 0; right: 0; top: 0; bottom: calc(var(--r-sheet) - 12px); width: 100%; height: calc(100% - var(--r-sheet) + 12px); display: block; overflow: visible; }
+.band .btn--outline-olive { background: var(--olive); }
+.band .etch { opacity: 0.55; }
+.band__label { position: absolute; top: 72px; left: var(--gutter); z-index: 2; color: var(--on-olive); }
+.band__ctas { position: absolute; right: var(--gutter); bottom: calc(var(--r-sheet) + 32px); display: flex; flex-wrap: wrap; gap: var(--s-2); z-index: 2; }
+@media (max-width: 767px) { .band__ctas { left: var(--gutter); } .band__label { top: 60px; right: var(--gutter); } }
+.etch { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.etch__text, .etch__num { font-family: var(--font-display); fill: currentColor; stroke: none; font-size: 14px; letter-spacing: 0.24em; }
+.etch__num { font-size: 11px; letter-spacing: 0.08em; }
+.tag { transform-origin: 440px 382px; transform-box: view-box; }
+.tag__string { stroke: var(--gold-on-olive); stroke-width: 1.2; }
+.tag__card { fill: var(--gold); }
+.tag__hole { fill: var(--olive); }
+.tag__text { font-family: var(--font-display); font-style: italic; font-size: 10px; fill: var(--on-gold); }
+.tag__text--b { font-style: normal; font-weight: 500; }
+
+/* ---------- Sheets & sections ---------- */
+.sheet { position: relative; z-index: 2; background: var(--bg); }
+.sheet--corner { margin-top: calc(var(--r-sheet) * -1); border-top-right-radius: var(--r-sheet); padding-top: clamp(64px, 8vw, 128px); transition: background-color var(--dur-base); }
+.section { padding-top: clamp(80px, 10vw, 160px); }
+.section-head { display: grid; gap: 0; }
+.section-head .lede { margin-left: auto; }
+
+/* Common-area issues on the mustard surface */
+.nearby { display: grid; gap: var(--s-7); }
+@media (min-width: 960px) {
+  .nearby { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .nearby__head { grid-column: 1 / span 6; }
+  .nearby__list { grid-column: 7 / -1; }
+}
+.mustard-list { background: var(--mustard); color: var(--on-olive); padding: var(--s-3) clamp(20px, 3vw, 40px) var(--s-5); }
+.mustard-list :focus-visible { outline-color: var(--on-olive); }
+.issue { padding: var(--s-5) 0; border-bottom: 1px solid var(--mustard-line); display: grid; gap: var(--s-2); }
+.issue:last-child { border-bottom: 0; }
+.issue__top { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); }
+.issue__cat { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.issue__title { text-wrap: balance; font-family: var(--font-display); font-weight: 400; font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem); line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+.issue__title a { text-decoration: none; }
+.issue__title a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.issue__meta { font-size: var(--text-sm); font-weight: 500; opacity: 0.92; margin: 0; }
+
+.affects { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-2); }
+.affects__bar { flex: 1; height: 2px; background: var(--mustard-line); overflow: hidden; }
+.affects__fill { display: block; height: 100%; width: 100%; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 0)); }
+.affects__btn {
+  display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 18px 0 5px; border-radius: var(--r-pill);
+  border: 1px solid var(--on-olive); background: transparent; color: var(--on-olive);
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+  transition: background-color var(--dur-fast), color var(--dur-fast);
+}
+.affects__btn:hover:not(:disabled) { background: rgba(247, 232, 198, 0.1); }
+.affects__btn:disabled { cursor: default; }
+.affects__num { display: inline-grid; place-items: center; min-width: 34px; height: 34px; padding: 0 6px; border-radius: var(--r-pill); background: rgba(247, 232, 198, 0.16); font-family: var(--font-display); font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; will-change: transform; }
+.affects__btn[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+.affects__btn[aria-pressed="true"] .affects__num { background: var(--on-gold); color: var(--gold); }
+
+/* ---------- Marquee of the hostel's own categories ---------- */
+.marquee { position: relative; overflow: hidden; margin-top: clamp(80px, 10vw, 160px); padding: clamp(16px, 2vw, 32px) 0; color: var(--etch); }
+.marquee::before, .marquee::after { content: ""; position: absolute; left: var(--gutter); right: var(--gutter); height: 1px; background: var(--gold); z-index: 1; }
+.marquee::before { top: 0; } .marquee::after { bottom: 0; }
+.marquee__etch { position: absolute; left: 50%; top: 50%; width: min(820px, 120%); transform: translate(-50%, -50%); }
+.marquee__track { position: relative; display: flex; width: max-content; animation: marquee 60s linear infinite; }
+.marquee__track span { font-family: var(--font-display); font-size: clamp(4rem, 2rem + 9vw, 12rem); line-height: 1.12; letter-spacing: -0.03em; color: var(--gold); white-space: pre; padding-right: 0.3em; text-transform: lowercase; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+
+/* ---------- Ticket lists (resident) ---------- */
+.tlist { display: grid; border-top: 1px solid var(--text); margin-top: clamp(40px, 5vw, 72px); }
+.trow { display: grid; grid-template-columns: 7rem minmax(0, 1fr) auto; gap: var(--s-2) var(--s-5); align-items: center; padding: var(--s-5) var(--s-2); border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; transition: background-color var(--dur-fast); }
+.trow:hover { background: var(--paper); }
+.trow__id { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.trow__title { display: block; text-wrap: balance; font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem); letter-spacing: -0.02em; line-height: 1.2; margin: 0; overflow-wrap: anywhere; }
+.trow__meta { display: block; font-size: var(--text-xs); color: var(--text-muted); font-weight: 600; margin: 2px 0 0; }
+.trow__end { display: flex; align-items: center; gap: var(--s-3); }
+.trow__arrow { color: var(--gold-ink); transition: transform 180ms var(--ease-spring); }
+.trow:hover .trow__arrow { transform: translateX(4px); }
+@media (max-width: 639px) {
+  .trow { grid-template-columns: 1fr auto; }
+  .trow__id { grid-column: 1; }
+  .trow__end { grid-column: 2; grid-row: 1; }
+  .trow__body { grid-column: 1 / -1; }
+  .trow__arrow { display: none; }
+}
+.more { display: flex; justify-content: center; padding-top: var(--s-5); }

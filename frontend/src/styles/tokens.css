@@ -1,0 +1,112 @@
+/* FixIt design tokens. Tailwind maps its theme to these variables (tailwind.config.ts). */
+
+:root {
+  /* Type */
+  --font-display: "Playfair Display Variable", "Playfair Display", "Bodoni 72", Didot, Georgia, serif;
+  --font-body: "Inter Tight Variable", "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --text-xs: 0.75rem;    /* 12  uppercase labels, meta */
+  --text-sm: 0.875rem;   /* 14  table body, secondary */
+  --text-base: 1rem;     /* 16  body, inputs */
+  --text-md: 1.125rem;   /* 18  lede */
+  --text-lg: 1.5rem;     /* 24  card titles */
+  --text-xl: 2rem;       /* 32  panel titles */
+  --text-2xl: clamp(2.5rem, 1.4rem + 4.4vw, 5rem);       /* 40 -> 80 section headlines */
+  --text-display: clamp(3.25rem, 1rem + 8.6vw, 8.75rem); /* 52 -> 140 hero */
+
+  --leading-display: 0.95;
+  --leading-body: 1.5;
+  --tracking-display: -0.045em;
+  --tracking-caps: 0.02em;
+
+  /* Spacing: 4px base */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  /* Shape: panels and inputs are square, controls are pills,
+     big overlapping sections get ONE large rounded corner. */
+  --r-0: 0px;
+  --r-pill: 999px;
+  --r-sheet: 56px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-reveal: 640ms;
+
+  --container: 1440px;
+  --gutter: clamp(16px, 2.2vw, 32px);
+}
+
+/* Default (every view): cream paper, brown ink, deep olive panels, one gold. */
+:root,
+[data-theme="light"] {
+  --bg: #f7e8c6;            /* cream sheet */
+  --paper: #fbf2dc;         /* raised paper: form, receipt */
+  --paper-2: #f0dcb2;       /* hover / skeleton */
+  --line: #d8c294;          /* hairline */
+  --line-strong: #a8936a;   /* input borders, rules */
+  --text: #443e2b;          /* warm brown ink, 8.6:1 on bg */
+  --text-muted: #6b6247;    /* 5.0:1 on bg */
+  --etch: #dcc69a;          /* etched line-art, decorative only */
+
+  --gold: #cfa65a;          /* fills: pills, selected day, marquee, rules */
+  --gold-ink: #7a5a1e;      /* small gold text on cream, 5.2:1 */
+  --gold-display: #9a7428;  /* large italic display on cream, 3.4:1 (large-text AA) */
+  --on-gold: #2e2a1d;       /* text on gold fill, 6.2:1 */
+
+  --olive: #37482f;         /* dark panels */
+  --olive-deep: #2c3a25;    /* table head strips, footer */
+  --on-olive: #f7e8c6;      /* cream on olive, 8.2:1 */
+  --on-olive-muted: #d3c9a6;
+  --gold-on-olive: #ddb872; /* gold text on olive, 5.3:1 */
+  --danger-on-olive: #f0a58c; /* breach numbers on olive, 4.9:1 */
+  --olive-line: #5a6b4e;
+
+  --mustard: #6d6a2c;       /* list surface; darkened from #8e8a3a so cream text passes AA (4.6:1) */
+  --mustard-line: #929050;
+
+  --danger: #a3341c;        /* SLA breached / urgent only, 5.7:1 */
+  --danger-soft: #f2d2bf;
+  --ok: #4c662b;            /* fixed / confirmed only */
+  --focus: #443e2b;
+  --grain-opacity: 0.09;
+  color-scheme: light;
+}
+
+/* Dark: the same house at night. Deep olive-charcoal, cream ink, same gold. */
+[data-theme="dark"] {
+  --bg: #1a1e16;
+  --paper: #222820;
+  --paper-2: #2b3227;
+  --line: #3a4434;
+  --line-strong: #5d684f;
+  --text: #f3e4c0;
+  --text-muted: #bdb08c;
+  --etch: #343c2d;
+
+  --gold: #cfa65a;
+  --gold-ink: #ddb872;
+  --gold-display: #cfa65a;
+  --on-gold: #2e2a1d;
+
+  --olive: #2f3f28;
+  --olive-deep: #252f20;
+  --on-olive: #f3e4c0;
+  --on-olive-muted: #c4b994;
+  --gold-on-olive: #ddb872;
+  --danger-on-olive: #f0a58c;
+  --olive-line: #4d5e43;
+
+  --mustard: #545221;
+  --mustard-line: #77733c;
+
+  --danger: #ec8a6e;
+  --danger-soft: #3d2620;
+  --ok: #a9bd86;
+  --focus: #ddb872;
+  --grain-opacity: 0.06;
+  color-scheme: dark;
+}
