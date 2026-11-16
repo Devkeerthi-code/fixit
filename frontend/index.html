@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FixIt · hostel complaints, tracked to the fix</title>
+    <meta name="description" content="Report a broken tap, fan or Wi-Fi in under thirty seconds, see who is on it and when they are coming. Wardens see what keeps breaking." />
+    <meta name="theme-color" content="#f7e8c6" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("fixit-theme");
+          var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = saved === "light" || saved === "dark" ? saved : dark ? "dark" : "light";
+          document.documentElement.dataset.theme = theme;
+          document.querySelector('meta[name="theme-color"]').setAttribute("content", theme === "dark" ? "#1a1e16" : "#f7e8c6");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>FixIt needs JavaScript to run.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
