@@ -1,5 +1,8 @@
 # FixIt
 
+[![CI](https://github.com/Devkeerthi-code/fixit/actions/workflows/ci.yml/badge.svg)](https://github.com/Devkeerthi-code/fixit/actions/workflows/ci.yml)
+[![Demo on GitHub Pages](https://github.com/Devkeerthi-code/fixit/actions/workflows/pages.yml/badge.svg)](https://devkeerthi-code.github.io/fixit/)
+
 Complaint and maintenance ticketing for hostels, campuses and apartment societies: residents report a problem in under 30 seconds, it goes straight to the right staff member, and anything left undone escalates to the warden on its own.
 
 **Try it now:** [devkeerthi-code.github.io/fixit](https://devkeerthi-code.github.io/fixit/). A browser-only demo with sample data: tap **Resident**, **Staff** or **Warden** in the top bar to see each side. Nothing you type leaves your browser.
