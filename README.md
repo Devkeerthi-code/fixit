@@ -325,6 +325,6 @@ cd frontend && npm test -- --run && npm run lint && npm run build
 
 ---
 
-**GitHub "About":** Complaint & maintenance ticketing for hostels and societies: 30-second reporting, auto-routing, SLA escalation. Spring Boot 3 + React.
+**GitHub "About":** Complaint & maintenance ticketing for hostels and societies: 30-second reporting, auto-routing, SLA escalation. Spring Boot 3 + React. Live demo on GitHub Pages.
 
-**Topics:** `spring-boot` · `java` · `react` · `postgresql` · `testcontainers`
+**Topics:** `spring-boot` · `java` · `react` · `postgresql` · `testcontainers` · `typescript` · `msw`
