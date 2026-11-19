@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "dev:demo": "vite --mode demo",
+    "build:demo": "tsc --noEmit && vite build --mode demo && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "vite preview",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest"
