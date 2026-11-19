@@ -25,8 +25,20 @@ FixIt fixes each of those:
 
 ## Screenshots
 
-TODO: capture after first deploy and save to `docs/`:
-`docs/resident-home.png`, `docs/raise-ticket.png`, `docs/ticket-timeline.png`, `docs/staff-queue.png`, `docs/warden-dashboard.png` (desktop + 360px phone).
+Captured from the demo (sample data).
+
+| Resident home | Ticket timeline |
+|---|---|
+| ![Resident home with room and open tickets](docs/screenshots/02-resident-home.png) | ![Timeline from reported to fixed](docs/screenshots/03-ticket-timeline.png) |
+| **Staff queue** | **Warden dashboard** |
+| ![Staff queue sorted by due time](docs/screenshots/04-staff-queue.png) | ![Warden dashboard with KPIs and workload](docs/screenshots/05-warden-dashboard.png) |
+
+On a phone:
+
+<p>
+  <img src="docs/screenshots/06-phone-raise.png" alt="Raising a complaint on a phone" width="260">
+  <img src="docs/screenshots/07-phone-dashboard.png" alt="Warden dashboard on a phone" width="260">
+</p>
 
 ## Features
 
