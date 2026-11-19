@@ -306,6 +306,7 @@ cd frontend && npm test -- --run && npm run lint && npm run build
 - **One hostel per user.** Staff working across several societies need separate accounts.
 - **No email/SMS/WhatsApp notifications yet.** People must open the app to see updates.
 - **The dashboard computes aggregates live.** Fine for one hostel's data. At very large volumes it would need materialised views or nightly rollups.
+- **The public demo is per browser.** Its data lives in that visitor's `localStorage`, photos last only until the tab reloads, and there is no SLA job running in the background. It shows the flows, not real-time behaviour between two people.
 
 ## What I learned
 
