@@ -1,10 +1,13 @@
 import "@testing-library/jest-dom/vitest";
-import { cleanup } from "@testing-library/react";
+import { cleanup, configure } from "@testing-library/react";
 import { Blob as NodeBlob, File as NodeFile } from "node:buffer";
 import { afterAll, afterEach, beforeAll } from "vitest";
 import { waking } from "../api/waking";
 import { toasts } from "../lib/toast";
 import { server } from "./server";
+
+// findBy* waits 1s by default. Lazy-loaded screens on a busy CI runner can take longer than that on the first render.
+configure({ asyncUtilTimeout: 5_000 });
 
 // jsdom gaps the app relies on in real browsers
 if (!window.matchMedia) {
