@@ -9,10 +9,13 @@ import "./styles/index.css";
 const root = document.getElementById("root");
 if (!root) throw new Error("Missing #root");
 
+// "/" normally; "/fixit" for the GitHub Pages demo, which is served from a sub-path.
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
+
 createRoot(root).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <BrowserRouter basename={basename} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <App />
       </BrowserRouter>
     </QueryClientProvider>
