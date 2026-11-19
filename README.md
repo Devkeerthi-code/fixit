@@ -107,6 +107,19 @@ flowchart LR
 4. That service loads the ticket by **id + hostelId**, checks the version the client saw, asks `TicketStateMachine` whether this actor may make this move, updates the ticket, appends an audit event and creates a notification. All of this happens in one database transaction.
 5. Any exception becomes the same JSON error shape in `GlobalExceptionHandler`.
 
+### The demo build (GitHub Pages)
+
+The same React app, built with `--mode demo`. Before the first render it registers an MSW service worker that answers every `/api` call in the browser from a small store in `localStorage`. The UI code is unchanged: it still calls `fetch("/api/...")`.
+
+```mermaid
+flowchart LR
+    UI[React SPA<br/>same code as production] -->|fetch /api/...| SW[[MSW service worker]]
+    SW --> Handlers[Demo handlers<br/>src/demo/handlers]
+    Handlers --> Rules[Mirrored rules<br/>state machine, SLA, routing]
+    Handlers --> Store[(localStorage<br/>sample data)]
+    Bar[Demo bar<br/>View as Resident / Staff / Warden] --> Store
+```
+
 ### Ticket state machine
 
 ```mermaid
