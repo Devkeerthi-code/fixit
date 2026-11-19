@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { slaText, timeAgo } from "./format";
+import { blockLabel, firstName, formatHours, placeOf, plural, slaText, timeAgo } from "./format";
 
 const NOW = Date.parse("2026-11-19T12:00:00Z");
 const ago = (ms: number) => new Date(NOW - ms).toISOString();
@@ -42,5 +42,46 @@ describe("slaText", () => {
   it("says Done for fixed and closed tickets, even if they were late", () => {
     expect(slaText({ slaDueAt: due(-10), slaBreached: true, status: "RESOLVED" }, NOW)).toBe("Done");
     expect(slaText({ slaDueAt: due(-10), slaBreached: true, status: "CLOSED" }, NOW)).toBe("Done");
+  });
+});
+
+describe("blockLabel and placeOf", () => {
+  it("reads a short block code as 'Block X' but keeps names the warden typed", () => {
+    expect(blockLabel("B")).toBe("Block B");
+    expect(blockLabel("2")).toBe("Block 2");
+    expect(blockLabel("A1")).toBe("Block A1");
+    expect(blockLabel("Tower 2")).toBe("Tower 2");
+    expect(blockLabel(" Block C ")).toBe("Block C");
+  });
+
+  const block = { id: 2, name: "B" };
+
+  it("uses the room label for room tickets", () => {
+    expect(placeOf({ commonArea: false, roomLabel: "B-204", block, locationNote: null })).toBe("B-204");
+  });
+
+  it("describes common areas by block and the note, if any", () => {
+    expect(placeOf({ commonArea: true, roomLabel: null, block, locationNote: null })).toBe("Block B common area");
+    expect(placeOf({ commonArea: true, roomLabel: null, block, locationNote: "Mess hall" })).toBe("Block B · Mess hall");
+  });
+});
+
+describe("small wording helpers", () => {
+  it("formats SLA hours as hours, then days", () => {
+    expect(formatHours(4)).toBe("4 h");
+    expect(formatHours(24)).toBe("1 day");
+    expect(formatHours(36)).toBe("1.5 days");
+    expect(formatHours(72)).toBe("3 days");
+  });
+
+  it("pluralises with an optional irregular form", () => {
+    expect(plural(1, "ticket")).toBe("1 ticket");
+    expect(plural(0, "ticket")).toBe("0 tickets");
+    expect(plural(2, "person", "people")).toBe("2 people");
+  });
+
+  it("takes the first name, ignoring extra spaces", () => {
+    expect(firstName("  Ravi   Kumar ")).toBe("Ravi");
+    expect(firstName("Meera")).toBe("Meera");
   });
 });
