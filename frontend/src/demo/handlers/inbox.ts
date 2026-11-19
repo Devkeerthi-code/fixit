@@ -40,7 +40,8 @@ export function buildDashboard(hostelId: number, from: string, to: string): Dash
       avgResolutionHours: average(
         closed.filter((t) => t.resolvedAt).map((t) => (Date.parse(t.resolvedAt ?? "") - Date.parse(t.createdAt)) / 3_600_000),
       ),
-      slaBreachRate: inRange.length ? inRange.filter((t) => isBreached(t, now)).length / inRange.length : 0,
+      // A percentage with one decimal, like the backend (42.9, not 0.429).
+      slaBreachRate: inRange.length ? Math.round((1000 * inRange.filter((t) => isBreached(t, now)).length) / inRange.length) / 10 : 0,
       avgRating: average(inRange.flatMap((t) => (t.rating ? [t.rating] : []))),
     },
     openByCategory: counts(open, categoryName),
