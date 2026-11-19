@@ -314,6 +314,7 @@ cd frontend && npm test -- --run && npm run lint && npm run build
 - That the database is the best place for invariants. The unique constraint behind idempotent escalation is simpler and more reliable than any in-memory "already sent" check.
 - Optimistic locking needs two layers: `@Version` for concurrent writes in the database, plus the client sending the version it *saw*, so a stale screen can't overwrite newer work.
 - How to measure N+1 instead of guessing: Hibernate statistics in an integration test.
+- `ddl-auto: validate` earns its keep. Running against a fresh database caught two entity mappings (`CITEXT` email, `CHAR(64)` token hash) that disagreed with the Flyway migration before any request was served.
 
 ## What I'd improve next
 
