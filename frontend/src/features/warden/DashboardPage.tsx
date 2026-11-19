@@ -1,5 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import { authApi } from "../../api/auth";
+import { errorFromResponse } from "../../api/errors";
 import { dashboardApi, type DateRange } from "../../api/inbox";
 import { useDashboard } from "../../api/queries";
 import { Headline } from "../../components/ui/Headline";
@@ -9,13 +10,26 @@ import { blockLabel, formatDay } from "../../lib/format";
 import { toastError } from "../../lib/toast";
 import { Bars, Kpis, Workload } from "./DashboardPanels";
 
-/** The CSV is a plain link; we touch /api/me first so an expired access token is refreshed before the download. */
+function filenameFrom(res: Response): string {
+  const match = /filename="?([^";]+)"?/.exec(res.headers.get("Content-Disposition") ?? "");
+  return match?.[1] ?? "fixit-tickets.csv";
+}
+
+/**
+ * Fetches the CSV and saves it from memory instead of navigating to it, so a failure shows as a toast
+ * rather than a raw error page. /api/me first refreshes an expired access token.
+ */
 async function download(e: MouseEvent<HTMLAnchorElement>) {
   e.preventDefault();
-  const href = e.currentTarget.href;
+  const href = e.currentTarget.getAttribute("href") ?? "";
   try {
     await authApi.me();
-    window.location.assign(href);
+    const res = await fetch(new URL(href, window.location.origin), { credentials: "include" });
+    if (!res.ok) throw await errorFromResponse(res);
+    const url = URL.createObjectURL(await res.blob());
+    const link = Object.assign(document.createElement("a"), { href: url, download: filenameFrom(res) });
+    link.click();
+    URL.revokeObjectURL(url);
   } catch (err) {
     toastError(err);
   }
