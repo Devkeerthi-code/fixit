@@ -263,6 +263,7 @@ cd frontend && npm test -- --run && npm run lint && npm run build
 | `TicketLifecycleIT` | auto-routing, duplicates, idempotent create, full lifecycle with audit trail, stale versions, reopen, reassign, "affects me too" |
 | `SlaEscalationIT` | real-DB escalation exactly once per cycle, no version bump, re-escalation after reopen, 72h auto-close |
 | `PersistenceIT` | `@Version` conflict, constant query count for lists (no N+1), DB constraints |
+| `src/demo/*.test.ts(x)` | the demo's mirrored rules, every main flow against the in-browser API, role switching in the demo bar |
 
 ## Deploy (free tiers)
 
