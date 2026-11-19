@@ -215,6 +215,11 @@ These are the things I learned building this, with a pointer to where each one i
    - `hostelId` comes only from the verified JWT. Repositories have `findByIdAndHostelId`, never a bare `findById`, for tenant data.
    - Cross-tenant access returns 404, not 403, so it doesn't reveal that an id exists.
    - *Alternatives:* a Hibernate `@Filter`, which is easy to forget to enable on a code path, or Postgres row-level security, which is strong but harder to test and reason about with a connection pool. I chose the explicit, greppable version and backed it with `HostelIsolationIT`, which attacks every id-taking endpoint from another hostel.
+6. **The public demo runs the real frontend against an in-browser API (MSW), not a hosted backend.**
+   - *Why:* a recruiter or a warden should be able to click through every role in seconds, with no sign-up, no cold start and no shared database for strangers to fill with junk. GitHub Pages hosts it for free.
+   - *How:* demo builds register an MSW service worker. Handlers in `src/demo` answer the same endpoints with the same JSON shapes, and mirror the backend's state machine, SLA and routing rules, which have their own tests. Production builds never load this code (it's a dynamic import behind `VITE_DEMO`).
+   - *Trade-off:* two copies of the business rules. The demo copy can drift from the Java one. The tests on both sides catch the common cases, but the Java code is the source of truth.
+   - *Alternatives:* a hosted demo backend with seeded accounts. It's more realistic, but it sleeps on the free tier and needs moderation and resets.
 
 ## Run locally
 
