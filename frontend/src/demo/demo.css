@@ -1,0 +1,45 @@
+/* Only loaded in the GitHub Pages demo build. */
+.demo-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-4);
+  padding: var(--s-2) var(--gutter);
+  background: var(--olive-deep);
+  color: var(--on-olive);
+  font-size: var(--text-sm);
+}
+
+.demo-bar__note { margin: 0; color: var(--on-olive-muted); }
+.demo-bar__note strong { color: var(--gold-on-olive); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; font-size: var(--text-xs); margin-right: var(--s-1); }
+
+.demo-bar__views { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
+.demo-bar__label { font-size: var(--text-xs); font-weight: 600; color: var(--on-olive-muted); }
+
+.demo-bar__view,
+.demo-bar__reset {
+  min-height: 32px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--olive-line);
+  background: transparent;
+  color: var(--on-olive);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.demo-bar__view:hover,
+.demo-bar__reset:hover { background: var(--olive); }
+
+.demo-bar__view[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+
+.demo-bar__reset { border-style: dashed; color: var(--on-olive-muted); }
+
+.demo-bar :focus-visible { outline: 2px solid var(--gold-on-olive); outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  .demo-bar { justify-content: center; text-align: center; }
+}
