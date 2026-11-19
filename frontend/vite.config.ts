@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
   const apiPort = rootEnv.PORT ?? "8080";
 
   return {
+    // The GitHub Pages demo lives at <user>.github.io/fixit/, so its assets need that prefix.
+    base: mode === "demo" ? "/fixit/" : "/",
     plugins: [react()],
     server: {
       port: 3000,
