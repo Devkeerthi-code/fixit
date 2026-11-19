@@ -16,8 +16,9 @@ import { layoutView, meView, settingsView, teamView } from "../views";
 
 const KINDS: HostelKind[] = ["HOSTEL", "CAMPUS", "SOCIETY"];
 
+/** Same alphabet as the backend's InviteCodes: no 0/O or 1/I/L, so codes can be read out loud. */
 function inviteCode(): string {
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   return Array.from({ length: 8 }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join("");
 }
 
