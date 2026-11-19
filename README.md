@@ -288,7 +288,12 @@ cd frontend && npm test -- --run && npm run lint && npm run build
 **3. Frontend: Vercel**
 1. In `frontend/vercel.json`, replace `YOUR-RENDER-SERVICE` with your Render service name. This rewrite is what makes the API same-origin.
 2. In Vercel, *Add New → Project*, import the repo and set **Root Directory = `frontend`**. Framework: Vite. No env vars are needed.
-3. Deploy, then put the Vercel URL in Render's `APP_ORIGIN` and in the "Live demo" line at the top of this README.
+3. Deploy, then put the Vercel URL in Render's `APP_ORIGIN` and in the "Full app" line at the top of this README.
+
+**4. Demo: GitHub Pages**
+1. In the GitHub repo, open *Settings → Pages* and set **Source = GitHub Actions**.
+2. Every push to `master` that touches `frontend/` runs `.github/workflows/pages.yml`: `npm run build:demo`, then deploy. You can also run it by hand from the *Actions* tab.
+3. The demo is served at `https://<user>.github.io/fixit/`. No secrets or env vars are needed. `404.html` is a copy of `index.html`, so deep links like `/fixit/warden` work.
 
 ## Limitations and what breaks at scale
 
