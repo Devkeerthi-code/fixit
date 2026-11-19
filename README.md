@@ -7,6 +7,8 @@ Complaint and maintenance ticketing for hostels, campuses and apartment societie
 
 **Try it now:** [devkeerthi-code.github.io/fixit](https://devkeerthi-code.github.io/fixit/). A browser-only demo with sample data: tap **Resident**, **Staff** or **Warden** in the top bar to see each side. Nothing you type leaves your browser.
 
+**More docs:** [demo internals](docs/demo.md) · [API reference](docs/api.md) · [decision records](docs/adr/README.md) · [testing](docs/testing.md) · [five-minute walkthrough](docs/walkthrough.md)
+
 **Full app (with the real backend):** TODO: add the Vercel link after deploying · **API docs:** TODO: `https://<your-render-service>.onrender.com/docs`
 
 ## Who is this for and what problem does it solve?
