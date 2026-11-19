@@ -237,6 +237,13 @@ cd frontend && npm install && npm run dev   # http://localhost:3000 (proxies /ap
 
 To run the backend without Docker (needs JDK 21), point `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` in `.env` at Neon or at a locally installed PostgreSQL (`jdbc:postgresql://localhost:5432/fixit`), then run `cd backend && ./mvnw spring-boot:run`. The app reads `../.env` itself and Flyway creates the schema on first start. If port 8080 is already in use, set `PORT=8081` in `.env`; the frontend proxy follows it.
 
+**Just the demo, no backend or database:**
+
+```bash
+cd frontend && npm install && npm run dev:demo   # http://localhost:3000/fixit/
+npm run build:demo                               # what GitHub Pages serves, in frontend/dist
+```
+
 ### Tests
 
 ```bash
