@@ -71,7 +71,8 @@ On a phone:
 | Auth | Spring Security, BCrypt, JJWT (HS256), httpOnly cookies, CSRF double-submit |
 | Frontend | React + TypeScript + Vite + Tailwind, React Router, TanStack Query, react-hook-form + zod |
 | Tests | JUnit 5, Mockito, Testcontainers (real Postgres in Docker), MockMvc; Vitest + Testing Library + MSW |
-| Delivery | Docker, docker-compose, GitHub Actions; Render (backend), Vercel (frontend), Neon (DB) |
+| Delivery | Docker, docker-compose, GitHub Actions; Render (backend), Vercel (frontend), Neon (DB); GitHub Pages (demo) |
+| Demo | MSW service worker answering the API in the browser, sample data in `localStorage` |
 
 ## Architecture
 
